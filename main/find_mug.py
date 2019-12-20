@@ -38,7 +38,7 @@ if __name__ == "__main__":
     if False: plot_labels_and_images(train_images, train_labels)
 
 
-    model = get_cnn_lowres()
+    model = get_med_cnn()
     print(model.summary())
 
 
@@ -47,16 +47,17 @@ if __name__ == "__main__":
                   metrics=['accuracy'])
 
 
-    batch_size = 2048
+    batch_size = 64
     train_size = len(train_labels)
     steps_per_epoch = int(train_size / batch_size)
     print(steps_per_epoch)
 
-    dgen_it = get_datagen_spec(transf_amnt = 1.0).flow(train_images, train_labels, batch_size=batch_size)
 
-    history = model.fit(x=train_images , y=train_labels , epochs=25, validation_data=(test_images, test_labels))
 
-    # history = model.fit_generator( generator=dgen_it, 	steps_per_epoch = train_size/batch_size ,  epochs=25,   validation_data=(test_images, test_labels))
+    # history = model.fit(x=train_images , y=train_labels , epochs=25, validation_data=(test_images, test_labels))
+
+    dgen_it = get_datagen_spec(transf_amnt=1.0).flow(train_images, train_labels, batch_size=batch_size)
+    history = model.fit_generator( generator=dgen_it, 	steps_per_epoch = train_size/batch_size ,  epochs=25,   validation_data=(test_images, test_labels))
 
     test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 

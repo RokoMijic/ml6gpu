@@ -65,8 +65,8 @@ def plot_predictions_and_images(predictions, test_labels, test_images, class_nam
 
 def plot_labels_and_images(images, labels):
 
-    num_rows = 3
-    num_cols = 3
+    num_rows = 4
+    num_cols = 4
     num_images = 2 * num_rows * num_cols
     plt.figure(figsize=(2 * 2 * num_cols, 2 * num_rows))
     for i in range(num_images):
@@ -80,5 +80,5 @@ def plot_labels_and_images(images, labels):
 
 def show_flowed_data(datagen, images, labels ):
     it = datagen.flow(images, labels, batch_size=1)
-    flowed_images, flowed_labels = zip(*( list(itertools.islice(it, 30)) ) )
+    flowed_images, flowed_labels = zip(*( list(itertools.islice(it, 50)) ) )
     plot_labels_and_images(images=flowed_images , labels= flowed_labels )
