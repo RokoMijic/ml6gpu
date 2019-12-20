@@ -5,6 +5,9 @@ import os
 import cv2
 import numpy as np
 
+
+from settings import IMG_DIM, COLOR_CHAN
+
 def create_data_with_labels(image_dir):
     """Gets numpy data and label array from images that are in the folders that are
     in the folder which was given as a parameter. The folders that are in that folder
@@ -18,7 +21,7 @@ def create_data_with_labels(image_dir):
         mug_files += [mug_image_files]
 
     num_images = len(mug_files[0])
-    images_np_arr = np.empty([len(mug_files), num_images, 64, 64, 3], dtype=np.float32)
+    images_np_arr = np.empty([len(mug_files), num_images, IMG_DIM, IMG_DIM, COLOR_CHAN], dtype=np.float32)
 
     for mug, _ in enumerate(mug_files):
         for mug_image in range(num_images):
@@ -31,7 +34,16 @@ def create_data_with_labels(image_dir):
     labels = np.full(num_images, int(mug_dirs[0][0]))
 
     for i in range(1, len(mug_dirs)):
+
         data = np.append(data, images_np_arr[i], axis=0)
         labels = np.append(labels, np.full(num_images, int(mug_dirs[i][0])), axis=0)
 
+        assert len(data) == len(labels)
+        perm = np.random.permutation(len(data) )
+
+        data = data[perm]
+        labels = labels[perm]
+
     return data, labels
+
+
