@@ -1,0 +1,10 @@
+/.git
+/.idea
+/ml6env
+/ml6_gpu_env
+/output
+/data
+/*_env
+
+*.pyc
+*.pyo
