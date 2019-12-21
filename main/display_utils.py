@@ -82,3 +82,5 @@ def show_flowed_data(datagen, images, labels ):
     it = datagen.flow(images, labels, batch_size=1)
     flowed_images, flowed_labels = zip(*( list(itertools.islice(it, 50)) ) )
     plot_labels_and_images(images=flowed_images , labels= flowed_labels )
+
+

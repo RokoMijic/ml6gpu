@@ -9,7 +9,7 @@ import PIL
 
 
 
-def get_datagen_spec(transf_amnt = 0.0):
+def get_datagen_w_transforms(transf_amnt = 1.0):
 
     return  ImageDataGenerator(
                                 rotation_range=20*transf_amnt,
@@ -22,9 +22,3 @@ def get_datagen_spec(transf_amnt = 0.0):
                                 fill_mode='nearest'
                               )
 
-
-if __name__ == "__main__":
-
-    pass
-
-    # save augmented images here
