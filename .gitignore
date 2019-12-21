@@ -3,7 +3,7 @@
 /ml6env
 /ml6_gpu_env
 /output
-/data
+/data*
 /*_env
 
 *.pyc
