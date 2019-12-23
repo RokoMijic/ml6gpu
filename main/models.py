@@ -358,7 +358,7 @@ def get_bigish_lenet_crop_cnn(reg_para=2.25):
 
                         Dropout(  drop_p ),
 
-                        Dense(40, activation='relu', kernel_regularizer=regularizers.l2(l)),
+                        Dense(30, activation='relu', kernel_regularizer=regularizers.l2(l)),
 
                         Dropout(  drop_p ),
 
