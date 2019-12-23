@@ -48,17 +48,24 @@ def plot_value_array(i, predictions_array, true_label):
   thisplot[true_label].set_color('blue')
 
 
-def plot_predictions_and_images(predictions, test_labels, test_images, class_names=CLASS_NAMES):
+# ( lambda _ : plot_preds_imgs(probs=prob_preds[ _ ], test_labels=test_labels[ _ ], test_images=test_images[ _ ])  ) (label_preds != test_labels)
+
+def plot_preds_imgs_masked(probs, test_labels, test_images, mask, class_names=CLASS_NAMES):
+    return plot_preds_imgs(probs=probs[ mask ], test_labels=test_labels[ mask ], test_images=test_images[ mask ], class_names=class_names)
+
+def plot_preds_imgs(probs, test_labels, test_images, class_names=CLASS_NAMES):
+
+    assert( len(probs) ==  len(test_labels) ==  len(test_images) )
 
     num_rows = 9
     num_cols = 7
-    num_images = num_rows * num_cols
+    num_images = min( num_rows * num_cols,  len(probs))
     plt.figure(figsize=(2 * 2 * num_cols, 2 * num_rows))
-    for i in range(num_images):
+    for i in range( num_images ) :
         plt.subplot(num_rows, 2 * num_cols, 2 * i + 1)
-        plot_image_w_predictions(i, predictions[i], test_labels, test_images, class_names=class_names)
+        plot_image_w_predictions(i, probs[i], test_labels, test_images, class_names=class_names)
         plt.subplot(num_rows, 2 * num_cols, 2 * i + 2)
-        plot_value_array(i, predictions[i], test_labels)
+        plot_value_array(i, probs[i], test_labels)
     plt.tight_layout()
     plt.show()
 
