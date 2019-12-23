@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     assert(os.path.isdir(DIR_LOAD_FROM))
 
-    num_to_save_per_class = 7750
+    num_to_save_per_class = 4000
 
 
     for dclass in CLASS_NAMES:
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         assert (os.path.isdir(DIR_TO_SAVE_TO))
 
         i = 0
-        for batch in get_datagen_w_transforms( transf_amnt=0.75 ).flow_from_directory(directory= DIR_LOAD_FROM ,
+        for batch in get_datagen_w_transforms( transf_amnt=1.0 ).flow_from_directory(directory= DIR_LOAD_FROM ,
                                                                     target_size=(IMG_DIM, IMG_DIM),
                                                                     classes=[dclass],
                                                                     class_mode=None,
