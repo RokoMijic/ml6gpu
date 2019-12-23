@@ -50,8 +50,8 @@ def plot_value_array(i, predictions_array, true_label):
 
 def plot_predictions_and_images(predictions, test_labels, test_images, class_names=CLASS_NAMES):
 
-    num_rows = 5
-    num_cols = 3
+    num_rows = 9
+    num_cols = 7
     num_images = num_rows * num_cols
     plt.figure(figsize=(2 * 2 * num_cols, 2 * num_rows))
     for i in range(num_images):
@@ -65,8 +65,8 @@ def plot_predictions_and_images(predictions, test_labels, test_images, class_nam
 
 def plot_labels_and_images(images, labels):
 
-    num_rows = 4
-    num_cols = 4
+    num_rows = 5
+    num_cols = 5
     num_images = 2 * num_rows * num_cols
     plt.figure(figsize=(2 * 2 * num_cols, 2 * num_rows))
     for i in range(num_images):
